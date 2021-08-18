@@ -45,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
+
    
 
 
@@ -82,11 +85,7 @@ public class MainActivity extends AppCompatActivity {
         materialCalendarView.addDecorator(new SaturdayDecorator());//토요일에 색칠하기
 
 
-        if(set!=null){
-            CalendarDay eventDay2 = CalendarDay.from(fnameYear,fnameMonth, fnameDay);
-            set.add(eventDay2);
-            materialCalendarView.addDecorator(new EventDecorator(Color.rgb(255,102,102),set));//51,153,153
-        }
+
 
 
         materialCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
@@ -136,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
                 CalendarDay eventDay2 = CalendarDay.from(fnameYear,fnameMonth, fnameDay);
                 set.add(eventDay2);
                 materialCalendarView.addDecorator(new EventDecorator(Color.rgb(255,102,102),set));//51,153,153
+                
 
 
             }
