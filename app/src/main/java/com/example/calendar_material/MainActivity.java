@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 saveDiary(fname);
-                str=contextEditText.getText().toString();//입력받은 문자 받아서
+                str=contextEditText.getText().toString();
                 textView2.setText(str);//글자로 보여줌
 
 
