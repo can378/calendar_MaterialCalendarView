@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.icu.util.Calendar;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -27,6 +29,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
     public int fnameMonth;
     public int fnameDay;
     public HashSet set=new HashSet<>();
-
 
 
 
@@ -112,6 +114,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+
         save_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -130,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
 
                 CalendarDay eventDay2 = CalendarDay.from(fnameYear,fnameMonth, fnameDay);
                 set.add(eventDay2);
+
                 iter=set.iterator();//set을 Iterator안에 담기
                 materialCalendarView.addDecorator(new EventDecorator(Color.rgb(255,102,102),set));//51,153,153
 
@@ -138,13 +143,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+
     public void  checkDay(int cYear,int cMonth,int cDay,String userID){
+        MaterialCalendarView materialCalendarView=(MaterialCalendarView)findViewById(R.id.calendarView);
         fname=""+userID+cYear+"-"+(cMonth+1)+""+"-"+cDay+".txt";//저장할 파일 이름설정
         FileInputStream fis=null;//FileStream fis 변수
 
         fnameYear=cYear;
         fnameMonth=cMonth;
         fnameDay=cDay;
+
 
         try{
             fis=openFileInput(fname);
@@ -162,7 +171,6 @@ public class MainActivity extends AppCompatActivity {
             save_Btn.setVisibility(View.INVISIBLE);
             cha_Btn.setVisibility(View.VISIBLE);
             del_Btn.setVisibility(View.VISIBLE);
-
 
             cha_Btn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -237,6 +245,8 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+
 
 
 }
