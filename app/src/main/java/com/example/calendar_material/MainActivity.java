@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
@@ -25,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,20 +37,15 @@ public class MainActivity extends AppCompatActivity {
     public Button cha_Btn,del_Btn,save_Btn;
     public TextView diaryTextView,textView2;
 
+    private Iterator iter;
 
-
-
+    //점표시하려고 만든 변수들
     public int fnameYear;
     public int fnameMonth;
     public int fnameDay;
     public HashSet set=new HashSet<>();
 
 
-
-
-
-
-   
 
 
     @Override
@@ -75,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         MaterialCalendarView materialCalendarView=(MaterialCalendarView)findViewById(R.id.calendarView);//얘 자리 옮기면 에러 이유는 모름..
         materialCalendarView.setSelectedDate(CalendarDay.today());
 
-        //materialCalendarView.addDecorator(new EventDecorator(Color.BLACK, Collections.singleton(CalendarDay.today())));//점표시. CalendarDay.today() = 오늘로 되어있음
+        //materialCalendarView.addDecorator(new EventDecorator(Color.BLACK, Collections.singleton(CalendarDay.today())));//점표시. CalendarDay.today() => 오늘로 되어있음
 
         OneDayDecorator oneDayDecorator=new OneDayDecorator();//오늘 날짜 강조
         materialCalendarView.addDecorators(oneDayDecorator);
@@ -83,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
         materialCalendarView.addDecorator(new MySelectorDecorator(this));//선택할떄 모양
         materialCalendarView.addDecorator(new SundayDecorator());//일요일에 색칠하기
         materialCalendarView.addDecorator(new SaturdayDecorator());//토요일에 색칠하기
-
 
 
 
@@ -134,17 +130,13 @@ public class MainActivity extends AppCompatActivity {
 
                 CalendarDay eventDay2 = CalendarDay.from(fnameYear,fnameMonth, fnameDay);
                 set.add(eventDay2);
+                iter=set.iterator();//set을 Iterator안에 담기
                 materialCalendarView.addDecorator(new EventDecorator(Color.rgb(255,102,102),set));//51,153,153
-                
-
 
             }
         });
-
-        
-
-
     }
+
 
     public void  checkDay(int cYear,int cMonth,int cDay,String userID){
         fname=""+userID+cYear+"-"+(cMonth+1)+""+"-"+cDay+".txt";//저장할 파일 이름설정
