@@ -9,7 +9,7 @@ import com.prolificinteractive.materialcalendarview.spans.DotSpan;
 import java.util.Collection;
 import java.util.HashSet;
 /*
-public class EventDecorator implements DayViewDecorator {//날짜에 점을 표시한다 온르날짜로 해놓음
+public class EventDecorator implements DayViewDecorator {//오늘날짜
 
     private final int color;
     private final HashSet<CalendarDay> dates;
